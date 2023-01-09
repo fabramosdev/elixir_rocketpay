@@ -3,7 +3,7 @@ defmodule RocketpayWeb.UsersView do
 
   def render("create.json", %{user: %User{id: id, name: name, nickname: nickname}}) do
     %{
-      message: "User created",
+      message: "User #{name} created with nickname '#{nickname}'. Use this nickname to make transactions in App",
       user: %{
         id: id,
         name: name,

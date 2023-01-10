@@ -9,10 +9,12 @@ defmodule Rocketpay.Numbers do
     result =
       result
       |> String.split(",")
-      |> Stream.map(&(String.to_integer/1))
+      |> Stream.map(&String.to_integer/1)
       |> Enum.sum()
 
     {:ok, %{result: result}}
   end
-  defp handle_file({:error, reason}), do: {:error, %{message: "Invalid  file! ((Erro: #{reason}))"}}
+
+  defp handle_file({:error, reason}),
+    do: {:error, %{message: "Invalid  file! ((Erro: #{reason}))"}}
 end

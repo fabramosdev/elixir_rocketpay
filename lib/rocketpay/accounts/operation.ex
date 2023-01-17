@@ -3,7 +3,7 @@ defmodule Rocketpay.Accounts.Operation do
   alias Rocketpay.Account
 
   def call(%{"id" => id, "value" => value}, operation) do
-    operation_name =  account_operation_name(operation)
+    operation_name = account_operation_name(operation)
 
     Multi.new()
     |> Multi.run(operation_name, fn repo, _changes -> get_account(repo, id) end)
@@ -37,6 +37,7 @@ defmodule Rocketpay.Accounts.Operation do
   defp handle_cast(:error, _value, _operation), do: {:error, "Invalid deposit value"}
 
   defp update_account({:error, _reason} = error, _repo, _account), do: error
+
   defp update_account(value, repo, account) do
     params = %{balance: value}
 
